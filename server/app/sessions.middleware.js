@@ -3,10 +3,18 @@ var express = require('express');
 var router = express.Router();
 
 
+// router.use(session({
+// 	cookieName: 'session',
+//   	secret: 'thisisforautherworkshop',
+//   	duration: 5000,
+//   	activeDuration: 20000
+
+// }))
 router.use(session({
-
-  secret: 'thisisforautherworkshop'
-
+	secret: 'thisisforautherworkshop',
+	cookie: {
+		maxAge: 5000
+	}
 }))
 
 router.use('/', function(req, res, next){
