@@ -3,9 +3,9 @@
 app.controller('StoryListCtrl', function ($scope, stories, Story, users) {
   $scope.stories = stories;
   $scope.users = users;
-
+  $scope.currentUser = LoginFactory.getCurrentUser();
   $scope.newStory = new Story();
-  
+
   $scope.removeStory = function (story) {
     story.destroy()
     .then(function () {

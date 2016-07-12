@@ -2,6 +2,7 @@
 
 app.controller('UserListCtrl', function ($scope, users, User) {
   $scope.users = users;
+  $scope.currentUser = LoginFactory.getCurrentUser();
   $scope.addUser = function () {
     $scope.userAdd.save()
     .then(function (user) {
@@ -9,7 +10,7 @@ app.controller('UserListCtrl', function ($scope, users, User) {
       $scope.users.unshift(user);
     });
   };
-  
+
   $scope.userSearch = new User();
 
   $scope.userAdd = new User();
