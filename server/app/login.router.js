@@ -17,11 +17,22 @@ router.post('/', function(req, res, next){
     } else{
       console.log('exists!')
     req.session.user = user;
-    res.sendStatus(200);
+    res.status(200).send(user);
   }
   })
   .catch(next)
 });
+
+router.get('/me', function(req, res, next){
+  var date = new Date();
+  console.log("current date: ", date)
+  if (req.session.cookie._expires > date.getTime()) {
+    res.status(200).send(req.session.user);
+  } else {
+    res.sendStatus(401);
+  }
+});
+
 
 router.post('/signup', function(req, res, next) {
   User.create({email: req.body.email, password: req.body.password})

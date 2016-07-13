@@ -13,7 +13,7 @@ var router = express.Router();
 router.use(session({
 	secret: 'thisisforautherworkshop',
 	cookie: {
-		maxAge: 5000
+		maxAge: 60000
 	}
 }))
 

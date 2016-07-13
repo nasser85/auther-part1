@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('StoryListCtrl', function ($scope, stories, Story, users) {
+app.controller('StoryListCtrl', function ($scope, stories, Story, users, LoginFactory) {
   $scope.stories = stories;
   $scope.users = users;
   $scope.currentUser = LoginFactory.getCurrentUser();
@@ -13,6 +13,10 @@ app.controller('StoryListCtrl', function ($scope, stories, Story, users) {
       $scope.stories.splice(idx, 1);
     });
   };
+
+  $scope.isAuthor = function(story) {
+    return story.author_id === $scope.currentUser.id;
+  }
 
   $scope.addStory = function () {
     $scope.newStory.save()

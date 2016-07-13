@@ -5,7 +5,7 @@ app.factory('LoginFactory', function($http) {
 		return $http.post('/login', {email: email, password: password})
 		.then(function(res) {
 			currentUser = res.data;
-			console.log(res.data);
+			console.log('current user: ', res.data);
 			return res.data;
 		});
 	}
@@ -28,6 +28,12 @@ app.factory('LoginFactory', function($http) {
 
 	loginFactory.getCurrentUser = function(){
 		return currentUser;
+	}
+
+	loginFactory.checkCookie = function() {
+		$http.get('/login/me', function(user) {
+			currentUser = user.data;
+		})
 	}
 
 	return loginFactory;

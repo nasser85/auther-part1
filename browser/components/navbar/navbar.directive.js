@@ -18,6 +18,7 @@ app.directive('navbar', function ($state, $location, $log, LoginFactory) {
         var path = $location.path();
         return path.startsWith(partial);
       };
+      scope.getCurrentUser = LoginFactory.getCurrentUser;
     }
   }
 });
